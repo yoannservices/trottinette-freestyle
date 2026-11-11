@@ -512,19 +512,19 @@ const Park = (() => {
     return g;
   }
 
+  // immeubles du décor lointain : kit commun assets/building-kit.js (fenêtres en relief, vitrines, balcons, corniche), façade vers le skatepark
+  const BK = BuildingKit(THREE), BSTY = [
+    [{ wall: '#b06a52', style: 'brick', awning: '#b3262e' }, { fh: 3.2, shop: true, door: '-z', doorType: 'block', balcony: 'alt', win: [1.3, 1.6] }],
+    [{ wall: '#d8cbb3', style: 'stucco', shutter: '#3f6b4a' }, { fh: 3.1, shop: true, door: '-z', doorType: 'block', shutters: true, win: [1.2, 1.5] }],
+    [{ wall: '#a9a49c', style: 'stone', glass: '#2c4357' }, { fh: 3.5, facade: 'ribbon', shop: true, door: '-z', doorType: 'block' }],
+    [{ wall: '#8f9aa5', style: 'concrete', frame: '#3c4652', glass: '#5a7a96' }, { fh: 3.6, gfh: 5, facade: 'curtain' }],
+  ];
   function building(x, z, w, d, h) {
-    const tex = canvasTex(256, (g, S) => {
-      g.fillStyle = '#8c8f96'; g.fillRect(0, 0, S, S);
-      for (let yy = 12; yy < S; yy += 40) for (let xx = 10; xx < S; xx += 36) {
-        g.fillStyle = Math.random() < 0.25 ? '#f3d9a4' : '#3c4656';
-        g.fillRect(xx, yy, 20, 26);
-      }
-    });
-    tex.repeat.set(w / 12, h / 12);
-    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.9 }));
-    m.position.set(x, h / 2, z);
-    m.receiveShadow = true;
-    return m;
+    const [m, o] = BSTY[Math.floor(Math.random() * BSTY.length)], acc = BK.acc();
+    BK.building(acc, { w, d, h, roof: 'flat', rand: Math.random, ...o });
+    const g = BK.group(acc.geometries(), BK.materials(m));
+    g.position.set(x, 0, z); g.rotation.y = Math.atan2(-x, -z);
+    return g;
   }
 
   function lamp(x, z, ry) {
