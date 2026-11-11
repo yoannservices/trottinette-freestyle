@@ -49,11 +49,19 @@ Touches indiquées en AZERTY. En QWERTY : W A S D. Les flèches marchent aussi.
 
 ## Technologies
 
-HTML, CSS et JavaScript ; rendu 3D avec [Three.js](https://threejs.org/) r128 (chargé depuis un CDN). Sans étape de build.
+HTML, CSS et JavaScript ; rendu 3D avec [Three.js](https://threejs.org/) r186 (chargé depuis un CDN par `assets/three-compat.js`). Sans étape de build.
 
 ---
 
 Fait partie de [Mes Projets](https://yoannservices.github.io/) · [Portfolio](https://yoannservices.github.io/portfolio/) · par [@yoannservices](https://github.com/yoannservices)
+
+## Fiche technique
+
+Résumé de ce que fait le code, tenu à jour à chaque modification : le lire suffit pour vérifier une information sans relire tout le jeu.
+
+- **Trottinette** : `assets/models/kick-scooter.glb` (`js/main.js`).
+- **Caméras (C)** : Poursuite (distance 4,3, hauteur 1,6), Large (7,8 ; 2,8), Proche (2,9 ; 1,15) ; clic gauche + glisser = orbite autour du rider.
+- **Sauvegarde** : clés préfixées `trottfs:`.
 
 ## Crédits des modèles 3D
 
